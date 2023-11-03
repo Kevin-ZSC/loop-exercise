@@ -1,0 +1,81 @@
+let readlineSync = require("readline-sync");
+
+
+function input () {
+    let a= [];
+    for(let i=1;i<6;i++) {
+    let askinput = readlineSync.question( `Enter hours worked on Day # ${i} : `)
+    a.push(askinput);
+    }
+    return a
+}
+
+function main () {
+    let hoursWorkeachday= input()
+    let highestHoursDay;
+    let totalHours =0 ;
+    let slackedDay;
+    let slackedhours= "";
+    for(let i=0;i<hoursWorkeachday.length;i++) {
+        highestHoursDay = Math.max(...hoursWorkeachday);
+        totalHours +=  Number(hoursWorkeachday[i]) ;
+      if (Number(hoursWorkeachday[i]) == highestHoursDay) {
+        console.log(`\nThe most hours worked was on : Day #${i+1} : ${highestHoursDay} hours\n`)
+      }
+      if (hoursWorkeachday[i] < 7 ) {
+        slackedDay= i+1;
+        slackedhours += `Day #${slackedDay}: ${Number(hoursWorkeachday[slackedDay-1])} hours \n`
+    }
+    }
+    console.log(`The total number of hours worked was: ${totalHours}`);
+    console.log(`The average number of hours worked each day was: ${totalHours/5}`);
+    console.log(`Days you slacked off ( i.e worked less than 7 hours): \n${slackedhours}`)
+}
+
+
+if (require.main === module)
+{
+    main();
+}
+
+
+
+// function main() 
+// {   //creat a loop to ask input 
+//     let inputDay = [];
+//     let themosthoursDay = "";
+
+//      for (let i= 1; i < 6; i++) {
+//         let workingHours = readlineSync.question(`Enter hours worked on Day # ${i} : `);
+//              inputDay.push(workingHours);
+//             if (Math.max(...inputDay) == workingHours) {
+//                 themosthoursDay += `Day #${i} : ${Math.max(...inputDay)} hours \n`;
+               
+//             }     
+//      }
+//     //create a function to turn inputDay value to number, then calculate the total wroking hours;
+//     let totalHours = 0;
+//     let workedHours = inputDay.map(function (str) {
+//         return Number(str);
+//     })
+//      for (let i = 0;i < workedHours.length; i++) {
+//      totalHours = totalHours + workedHours[i];
+//      } 
+     
+//     console.log(`----------------------------------------------`)
+//     console.log(`The most hours worked was on : \n${themosthoursDay}`)
+//     console.log(`----------------------------------------------`)
+//     console.log(`The total number of hours worked was: ${totalHours}`)
+//     console.log(`The average number of hours worked each day was: ${totalHours/5}`)
+//     //create a loop for looping each workhours in each day, if this hours < 7, print this day;
+//     let slackedDay;
+//     let slackedhours= "";
+//     for(let i= 0; i<inputDay.length; i++) {
+//         if (inputDay[i] < 7 ) {
+//             slackedDay= i+1;
+//             slackedhours += `Day #${slackedDay}: ${Number(inputDay[slackedDay-1])} hours \n`
+//         }
+        
+//     }
+//     console.log(`Days you slacked off ( i.e worked less than 7 hours): \n${slackedhours}`)
+// }
